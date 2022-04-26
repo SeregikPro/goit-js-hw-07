@@ -20,3 +20,15 @@ function createElGalleryMarkup (images) {
 };
 
 gallery.innerHTML = elGalleryMarkup;
+
+gallery.addEventListener("click", onImgClick);
+
+function onImgClick(e) {
+  e.preventDefault();
+  if (e.target.tagName !== "IMG") return;
+  const instance = basicLightbox.create(
+    `<img width="1400" heigth="900" src="${e.target.dataset.source}">`
+  );
+  instance.show();
+  gallery.addEventListener("keydown", onKeydown);
+}
